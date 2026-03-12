@@ -1,0 +1,264 @@
+<!-- subject html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subject Games - NEXUS GAMING</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --cyber-pink: #ff006e;
+    --cyber-blue: #00f5ff;
+    --cyber-purple: #8338ec;
+    --dark-bg: #050714;
+    --card-bg: #16213e;
+}
+
+
+body {
+    background: radial-gradient(circle at top, #0a0e27, #050714);
+    color: white;
+    font-family: 'Rajdhani', sans-serif;
+    padding: 40px;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.top-nav {
+    background: var(--card-bg);
+    padding: 15px 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.back-btn {
+    padding: 8px 20px;
+    background: transparent;
+    border: 2px solid var(--cyber-blue);
+    border-radius: 8px;
+    color: var(--cyber-blue);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.back-btn:hover {
+    background: var(--cyber-blue);
+    color: #000;
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--cyber-blue);
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.game-card {
+    background: rgba(10,14,39,0.85);
+    border: 2px solid rgba(0,245,255,0.35);
+    border-radius: 18px;
+    padding: 30px 20px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 20px rgba(0,245,255,0.25);
+}
+
+.game-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.25),
+        transparent
+    );
+    transform: translateX(-100%);
+}
+
+.game-card:hover::before {
+    transform: translateX(100%);
+    transition: 0.6s;
+}
+
+.game-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 0 40px rgba(0,245,255,0.6);
+}
+
+.game-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.game-title {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+    color: var(--cyber-blue);
+}
+
+.game-description {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 10px;
+}
+
+.difficulty {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    padding: 5px 15px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.difficulty-easy {
+    background: rgba(6, 255, 165, 0.2);
+    color: #06ffa5;
+    border: 1px solid #06ffa5;
+}
+
+.difficulty-medium {
+    background: rgba(255, 190, 11, 0.2);
+    color: #ffbe0b;
+    border: 1px solid #ffbe0b;
+}
+
+.difficulty-hard {
+    background: rgba(255, 0, 110, 0.2);
+    color: #ff006e;
+    border: 1px solid #ff006e;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="top-nav">
+        <a href="main.html" class="back-btn">← Back to Subjects</a>
+        <div></div>
+    </div>
+
+    <h1 id="subjectTitle"></h1>
+    <div class="games-grid" id="gamesGrid"></div>
+</div>
+
+<script>
+const games = {
+    'Maths': [
+        { 
+            name: 'Math Quiz', 
+            icon: '➕', 
+            difficulty: 'Easy',
+            description: 'Test your arithmetic skills',
+            file: 'math-quiz.html'
+        },
+        { 
+            name: 'Sudoku', 
+            icon: '🔢', 
+            difficulty: 'Medium',
+            description: 'Classic number puzzle',
+            file: 'sudoku.html'
+        },
+        { 
+            name: 'Number Puzzle', 
+            icon: '🧮', 
+            difficulty: 'Easy',
+            description: 'Solve number patterns',
+            file: 'number-puzzle.html'
+        }
+    ],
+    'Physics': [
+        { 
+            name: 'Physics Quiz', 
+            icon: '⚛️', 
+            difficulty: 'Medium',
+            description: 'Test your physics knowledge',
+            file: 'physics-quiz.html'
+        },
+        { 
+            name: 'Projectile Motion', 
+            icon: '🎯', 
+            difficulty: 'Hard',
+            description: 'Calculate trajectories',
+            file: 'projectile.html'
+        }
+    ],
+    'Chemistry': [
+        { 
+            name: 'Periodic Table Game', 
+            icon: '⚗️', 
+            difficulty: 'Medium',
+            description: 'Learn the periodic table',
+            file: 'periodic-table.html'
+        },
+        { 
+            name: 'Chemistry Quiz', 
+            icon: '🧪', 
+            difficulty: 'Easy',
+            description: 'Test chemistry concepts',
+            file: 'chemistry-quiz.html'
+        }
+    ]
+};
+
+const params = new URLSearchParams(window.location.search);
+const subject = params.get("subject");
+
+document.getElementById("subjectTitle").textContent = subject + " Games";
+
+const grid = document.getElementById("gamesGrid");
+const subjectGames = games[subject] || [];
+
+subjectGames.forEach(game => {
+    const card = document.createElement("div");
+    card.className = "game-card";
+    
+    const difficultyClass = game.difficulty === 'Easy' ? 'difficulty-easy' : 
+                           game.difficulty === 'Medium' ? 'difficulty-medium' : 'difficulty-hard';
+    
+    card.innerHTML = `
+        <div class="game-icon">${game.icon}</div>
+        <div class="game-title">${game.name}</div>
+        <div class="game-description">${game.description}</div>
+        <div class="difficulty ${difficultyClass}">${game.difficulty}</div>
+    `;
+
+    card.onclick = () => {
+        window.location.href = game.file;
+    };
+    
+    grid.appendChild(card);
+});
+</script>
+
+</body>
+</html>

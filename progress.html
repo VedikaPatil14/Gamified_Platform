@@ -1,0 +1,624 @@
+<!-- progress html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS GAMING - Progress</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cyber-pink: #ff006e;
+            --cyber-blue: #00f5ff;
+            --cyber-purple: #8338ec;
+            --cyber-yellow: #ffbe0b;
+            --cyber-green: #06ffa5;
+            --dark-bg: #0a0e27;
+            --darker-bg: #1a1a2e;
+            --card-bg: #16213e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--darker-bg);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .top-nav {
+            background: var(--card-bg);
+            padding: 15px 30px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-btn {
+            padding: 8px 20px;
+            background: transparent;
+            border: 2px solid var(--cyber-blue);
+            border-radius: 8px;
+            color: var(--cyber-blue);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .back-btn:hover {
+            background: var(--cyber-blue);
+            color: #000;
+        }
+
+        .page-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .progress-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .history-section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .history-table {
+            width: 100%;
+        }
+
+        .history-header {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 1fr;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+        }
+
+        .history-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 1fr;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .history-row:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .problem-title {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .difficulty-easy { color: var(--cyber-green); font-size: 0.85rem; }
+        .difficulty-medium { color: var(--cyber-yellow); font-size: 0.85rem; }
+        .difficulty-hard { color: var(--cyber-pink); font-size: 0.85rem; }
+        .status-accepted { color: var(--cyber-green); }
+        .date-text { color: rgba(255, 255, 255, 0.5); font-size: 0.9rem; }
+
+        .summary-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .summary-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .summary-header {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .stats-circle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .circle-chart {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: conic-gradient(
+                var(--cyber-green) 0deg 204deg,
+                var(--cyber-yellow) 204deg 216deg,
+                var(--cyber-pink) 216deg 360deg
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .circle-inner {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .solved-count {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .solved-text {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .difficulty-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .submission-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-box-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 8px;
+        }
+
+        .stat-box-value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .stat-box-value.submissions {
+            color: var(--cyber-purple);
+        }
+
+        .stat-box-value.acceptance {
+            color: var(--cyber-green);
+        }
+
+        .calendar-section {
+            margin-top: 20px;
+        }
+
+        .calendar-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .streak-info {
+            display: flex;
+            gap: 20px;
+        }
+
+        .streak-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .streak-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--cyber-yellow);
+        }
+
+        .calendar-months {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 8px;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .month-label {
+            flex: 1;
+            text-align: center;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(53, 1fr);
+            gap: 3px;
+        }
+
+        .week-col {
+            display: grid;
+            grid-template-rows: repeat(7, 1fr);
+            gap: 3px;
+        }
+
+        .day-box {
+            width: 100%;
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 2px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .day-box.active-1 { background: rgba(6, 255, 165, 0.2); }
+        .day-box.active-2 { background: rgba(6, 255, 165, 0.4); }
+        .day-box.active-3 { background: rgba(6, 255, 165, 0.6); }
+        .day-box.active-4 { background: var(--cyber-green); }
+
+        .day-box:hover {
+            transform: scale(1.3);
+            z-index: 10;
+            box-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+        }
+
+        .day-tooltip {
+            display: none;
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 8px 12px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid var(--cyber-blue);
+            border-radius: 6px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            z-index: 100;
+        }
+
+        .day-box:hover .day-tooltip {
+            display: block;
+        }
+
+        .badges-section {
+            margin-top: 15px;
+        }
+
+        .badge-box {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .badge-count {
+            font-size: 3rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 968px) {
+            .progress-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .history-header, .history-row {
+                grid-template-columns: 1fr 2fr 1fr;
+                font-size: 0.75rem;
+            }
+
+            .history-row .date-text {
+                display: none;
+            }
+
+            .calendar-grid {
+                grid-template-columns: repeat(26, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-nav">
+            <a href="main.html" class="back-btn">← Back</a>
+            <h1 class="page-title">Practice History</h1>
+            <div style="width: 100px;"></div>
+        </div>
+
+        <div class="progress-layout">
+            <div class="history-section">
+                <div class="section-header">
+                    <h2 class="section-title">Practice History</h2>
+                    <button class="filter-btn">⚙ Filter</button>
+                </div>
+
+                <div class="history-table">
+                    <div class="history-header">
+                        <div>Last Submitted</div>
+                        <div>Problem</div>
+                        <div>Last Result</div>
+                        <div>Submissions</div>
+                    </div>
+                    <div id="historyList"></div>
+                </div>
+            </div>
+
+            <div class="summary-section">
+                <div class="summary-card">
+                    <h3 class="summary-header">Summary</h3>
+                    
+                    <div class="stats-circle">
+                        <div class="circle-chart">
+                            <div class="circle-inner">
+                                <div class="solved-count" id="totalSolved">0</div>
+                                <div class="solved-text">Solved</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="difficulty-stats">
+                        <div class="stat-row">
+                            <span class="stat-label difficulty-easy">Easy</span>
+                            <span class="stat-value difficulty-easy" id="easySolved">0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label difficulty-medium">Med.</span>
+                            <span class="stat-value difficulty-medium" id="mediumSolved">0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label difficulty-hard">Hard</span>
+                            <span class="stat-value difficulty-hard" id="hardSolved">0</span>
+                        </div>
+                    </div>
+
+                    <div class="submission-stats">
+                        <div class="stat-box">
+                            <div class="stat-box-label">Submissions</div>
+                            <div class="stat-box-value submissions" id="totalSubmissions">0</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-box-label">Acceptance</div>
+                            <div class="stat-box-value acceptance" id="acceptanceRate">0%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="calendar-info">
+                        <span><span id="submissionCount">0</span> submissions in the past year</span>
+                        <div class="streak-info">
+                            <div class="streak-item">
+                                <span>🔥</span>
+                                <span class="streak-number" id="currentStreak">0</span>
+                            </div>
+                            <div class="streak-item">
+                                <span>Max:</span>
+                                <span class="streak-number" id="maxStreak">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="calendar-section">
+                        <div class="calendar-months" id="calendarMonths"></div>
+                        <div class="calendar-grid" id="calendarGrid"></div>
+                    </div>
+                </div>
+
+                <div class="summary-card badges-section">
+                    <h3 class="summary-header">Badges</h3>
+                    <div class="badge-box">
+                        <div class="badge-count" id="badgeCount">0</div>
+                        <div>Locked Badge</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        
+        if (!currentUser) {
+            window.location.href = 'login.html';
+        }
+
+        const progressKey = `progress_${currentUser.email}`;
+        let progressData = JSON.parse(localStorage.getItem(progressKey)) || {
+            gamesPlayed: 0,
+            streak: 0,
+            longestStreak: 0,
+            lastDate: null,
+            activeDates: [],
+            xp: 0,
+            subjects: { Maths: 0, Physics: 0, Chemistry: 0 },
+            history: []
+        };
+
+        function renderHistory() {
+            const historyList = document.getElementById('historyList');
+            const history = progressData.history || [];
+            
+            if (history.length === 0) {
+                historyList.innerHTML = '<div style="padding: 40px; text-align: center; color: rgba(255,255,255,0.3);">No submissions yet. Start playing to see your history!</div>';
+                return;
+            }
+
+            historyList.innerHTML = history.slice().reverse().map(item => {
+                const difficultyClass = item.difficulty === 'Easy' ? 'difficulty-easy' : 
+                                       item.difficulty === 'Medium' ? 'difficulty-medium' : 'difficulty-hard';
+                return `
+                    <div class="history-row">
+                        <div class="date-text">${item.date}</div>
+                        <div>
+                            <div class="problem-title">${item.problem}</div>
+                            <div class="${difficultyClass}">${item.difficulty}</div>
+                        </div>
+                        <div class="status-accepted">Accepted</div>
+                        <div>1</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function calculateStats() {
+            const history = progressData.history || [];
+            const easy = history.filter(h => h.difficulty === 'Easy').length;
+            const medium = history.filter(h => h.difficulty === 'Medium').length;
+            const hard = history.filter(h => h.difficulty === 'Hard').length;
+            const total = history.length;
+            
+            document.getElementById('totalSolved').textContent = total;
+            document.getElementById('easySolved').textContent = easy;
+            document.getElementById('mediumSolved').textContent = medium;
+            document.getElementById('hardSolved').textContent = hard;
+            document.getElementById('totalSubmissions').textContent = progressData.gamesPlayed || 0;
+            document.getElementById('acceptanceRate').textContent = total > 0 ? '100%' : '0%';
+            document.getElementById('submissionCount').textContent = progressData.gamesPlayed || 0;
+            document.getElementById('currentStreak').textContent = progressData.streak || 0;
+            document.getElementById('maxStreak').textContent = progressData.longestStreak || 0;
+            document.getElementById('badgeCount').textContent = total >= 10 ? '1' : '0';
+        }
+
+        function renderCalendar() {
+            const calendarGrid = document.getElementById('calendarGrid');
+            const monthsContainer = document.getElementById('calendarMonths');
+            
+            const today = new Date();
+            const oneYearAgo = new Date(today);
+            oneYearAgo.setFullYear(today.getFullYear() - 1);
+            
+            // Generate month labels
+            const months = [];
+            const currentMonth = today.getMonth();
+            for(let i = 0; i < 12; i++) {
+                const monthIndex = (currentMonth + i + 1) % 12;
+                const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                months.push(monthNames[monthIndex]);
+            }
+            
+            monthsContainer.innerHTML = months.map(m => `<div class="month-label">${m}</div>`).join('');
+            
+            // Generate calendar (53 weeks, 7 days each)
+            const activeDatesMap = {};
+            (progressData.activeDates || []).forEach(dateStr => {
+                const date = new Date(dateStr);
+                const key = date.toISOString().split('T')[0];
+                activeDatesMap[key] = (activeDatesMap[key] || 0) + 1;
+            });
+
+            let currentDate = new Date(oneYearAgo);
+            currentDate.setDate(currentDate.getDate() - currentDate.getDay()); // Start from Sunday
+
+            for(let week = 0; week < 53; week++) {
+                const weekDiv = document.createElement('div');
+                weekDiv.className = 'week-col';
+                
+                for(let day = 0; day < 7; day++) {
+                    const dayBox = document.createElement('div');
+                    dayBox.className = 'day-box';
+                    
+                    const dateKey = currentDate.toISOString().split('T')[0];
+                    const count = activeDatesMap[dateKey] || 0;
+                    
+                    if(count > 0) {
+                        const level = Math.min(4, Math.ceil(count / 2));
+                        dayBox.classList.add(`active-${level}`);
+                    }
+                    
+                    // Add tooltip
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'day-tooltip';
+                    tooltip.textContent = `${currentDate.toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}: ${count} submissions`;
+                    dayBox.appendChild(tooltip);
+                    
+                    weekDiv.appendChild(dayBox);
+                    currentDate.setDate(currentDate.getDate() + 1);
+                }
+                
+                calendarGrid.appendChild(weekDiv);
+            }
+        }
+
+        renderHistory();
+        calculateStats();
+        renderCalendar();
+    </script>
+</body>
+</html>
