@@ -1,0 +1,62 @@
+/* ===========================
+   NEXUS GAMING - Subject CSS
+   =========================== */
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--cyber-blue);
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(0,245,255,0.4);
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.game-card {
+    background: rgba(10,14,39,0.85);
+    border: 2px solid rgba(0,245,255,0.35);
+    border-radius: 18px;
+    padding: 30px 20px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 20px rgba(0,245,255,0.25);
+}
+
+.game-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
+    transform: translateX(-100%);
+}
+
+.game-card:hover::before { transform: translateX(100%); transition: 0.6s; }
+
+.game-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 0 40px rgba(0,245,255,0.6);
+}
+
+.game-icon        { font-size: 3rem; margin-bottom: 15px; }
+.game-title       { font-family: 'Orbitron', sans-serif; letter-spacing: 1px; font-size: 1.2rem; color: var(--cyber-blue); }
+.game-description { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-top: 10px; }

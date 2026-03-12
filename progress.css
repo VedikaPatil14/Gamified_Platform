@@ -1,0 +1,185 @@
+/* ===========================
+   NEXUS GAMING - Progress CSS
+   =========================== */
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+}
+
+.page-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Layout */
+.progress-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+/* History */
+.history-section {
+    background: rgba(10,14,39,0.85);
+    border: 2px solid rgba(0,245,255,0.25);
+    border-radius: 14px;
+    padding: 25px;
+    backdrop-filter: blur(10px);
+}
+
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+
+.section-title { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; color: #fff; }
+
+.filter-btn {
+    padding: 8px 16px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+
+.filter-btn:hover { background: rgba(0,245,255,0.1); border-color: var(--cyber-blue); color: #fff; }
+
+.history-table { width: 100%; }
+
+.history-header {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.history-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    align-items: center;
+    transition: background 0.2s;
+}
+
+.history-row:hover { background: rgba(255,255,255,0.02); }
+
+.problem-title { color: #fff; font-weight: 500; }
+.status-accepted { color: var(--cyber-green); }
+.date-text { color: rgba(255,255,255,0.5); font-size: 0.85rem; }
+.difficulty-easy   { color: var(--cyber-green);  font-size: 0.8rem; }
+.difficulty-medium { color: var(--cyber-yellow); font-size: 0.8rem; }
+.difficulty-hard   { color: var(--cyber-pink);   font-size: 0.8rem; }
+
+/* Summary */
+.summary-section { display: flex; flex-direction: column; gap: 20px; }
+
+.summary-card {
+    background: rgba(10,14,39,0.85);
+    border: 2px solid rgba(0,245,255,0.25);
+    border-radius: 14px;
+    padding: 25px;
+    backdrop-filter: blur(10px);
+}
+
+.summary-header { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; margin-bottom: 20px; color: #fff; }
+
+/* Circle chart */
+.stats-circle { display: flex; justify-content: center; align-items: center; margin: 20px 0; }
+
+.circle-chart {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: conic-gradient(var(--cyber-green) 0deg 204deg, var(--cyber-yellow) 204deg 216deg, var(--cyber-pink) 216deg 360deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle-inner {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: rgba(10,14,39,0.97);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.solved-count { font-size: 2.2rem; font-weight: 700; color: #fff; }
+.solved-text  { font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+
+.difficulty-stats { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
+
+.stat-row { display: flex; justify-content: space-between; align-items: center; }
+.stat-row .stat-label { font-size: 0.95rem; }
+.stat-row .stat-value { font-weight: 700; font-size: 1.1rem; }
+
+.submission-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
+
+.stat-box { text-align: center; }
+.stat-box-label { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+.stat-box-value.submissions { font-size: 1.8rem; font-weight: 700; color: var(--cyber-purple); }
+.stat-box-value.acceptance  { font-size: 1.8rem; font-weight: 700; color: var(--cyber-green); }
+
+/* Calendar */
+.calendar-info { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 0.85rem; color: rgba(255,255,255,0.7); }
+.streak-info { display: flex; gap: 20px; }
+.streak-item { display: flex; align-items: center; gap: 6px; }
+.streak-number { font-size: 1.1rem; font-weight: bold; color: var(--cyber-yellow); }
+
+.calendar-months { display: flex; gap: 3px; margin-bottom: 6px; font-size: 0.65rem; color: rgba(255,255,255,0.5); }
+.month-label { flex: 1; text-align: center; }
+
+.calendar-grid { display: grid; grid-template-columns: repeat(53, 1fr); gap: 3px; }
+.week-col { display: grid; grid-template-rows: repeat(7, 1fr); gap: 3px; }
+
+.day-box { width: 100%; aspect-ratio: 1; background: rgba(255,255,255,0.05); border-radius: 2px; transition: all 0.2s; cursor: pointer; position: relative; }
+.day-box.active-1 { background: rgba(6,255,165,0.2); }
+.day-box.active-2 { background: rgba(6,255,165,0.4); }
+.day-box.active-3 { background: rgba(6,255,165,0.6); }
+.day-box.active-4 { background: var(--cyber-green); }
+.day-box:hover { transform: scale(1.4); z-index: 10; box-shadow: 0 0 10px rgba(0,245,255,0.5); }
+
+.day-tooltip {
+    display: none;
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 10px;
+    background: rgba(0,0,0,0.9);
+    border: 1px solid var(--cyber-blue);
+    border-radius: 6px;
+    font-size: 0.7rem;
+    white-space: nowrap;
+    z-index: 100;
+}
+
+.day-box:hover .day-tooltip { display: block; }
+
+/* Badges */
+.badge-box { text-align: center; padding: 30px; background: rgba(255,255,255,0.02); border-radius: 8px; color: rgba(255,255,255,0.5); }
+.badge-count { font-size: 2.5rem; font-weight: 700; color: rgba(255,255,255,0.3); }
+
+/* Responsive */
+@media (max-width: 968px) {
+    .progress-layout { grid-template-columns: 1fr; }
+    .history-header, .history-row { grid-template-columns: 1fr 2fr 1fr; font-size: 0.75rem; }
+    .history-row .date-text { display: none; }
+    .calendar-grid { grid-template-columns: repeat(26, 1fr); }
+}

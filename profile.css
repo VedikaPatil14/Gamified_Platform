@@ -1,0 +1,175 @@
+/* ===========================
+   NEXUS GAMING - Profile CSS
+   =========================== */
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+}
+
+.profile-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 30px;
+}
+
+.profile-sidebar { display: flex; flex-direction: column; gap: 15px; }
+
+.profile-card {
+    background: rgba(10,14,39,0.85);
+    border: 2px solid rgba(0,245,255,0.3);
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(0,245,255,0.1);
+}
+
+.profile-avatar {
+    width: 140px;
+    height: 140px;
+    background: linear-gradient(135deg, var(--cyber-purple), var(--cyber-pink));
+    border: 3px solid var(--cyber-blue);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    margin: 0 auto 20px;
+    box-shadow: 0 0 30px rgba(0,245,255,0.3);
+}
+
+.profile-username { font-family: 'Orbitron', sans-serif; font-size: 1.4rem; margin-bottom: 5px; color: var(--cyber-blue); }
+.profile-id       { color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-bottom: 15px; }
+
+.profile-stats { display: flex; justify-content: space-around; margin: 20px 0; }
+.stat-item { text-align: center; }
+.stat-item .stat-value { font-size: 1.4rem; font-weight: 700; color: var(--cyber-yellow); }
+.stat-item .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+
+/* Menu */
+.menu-list { background: rgba(10,14,39,0.85); border: 2px solid rgba(0,245,255,0.2); border-radius: 12px; overflow: hidden; backdrop-filter: blur(10px); }
+
+.menu-item {
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-left: 3px solid transparent;
+    color: rgba(255,255,255,0.8);
+}
+
+.menu-item:hover { background: rgba(0,245,255,0.07); }
+.menu-item.active { background: rgba(0,245,255,0.1); border-left-color: var(--cyber-blue); color: #fff; }
+
+/* Content */
+.profile-content {
+    background: rgba(10,14,39,0.85);
+    border: 2px solid rgba(0,245,255,0.25);
+    border-radius: 16px;
+    padding: 40px;
+    backdrop-filter: blur(10px);
+}
+
+.content-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgba(0,245,255,0.2);
+    color: var(--cyber-blue);
+}
+
+.info-grid { display: flex; flex-direction: column; gap: 5px; }
+
+.info-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 110px;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.info-label { color: rgba(255,255,255,0.5); font-size: 0.9rem; }
+.info-value { color: #fff; font-size: 1rem; }
+
+.edit-btn {
+    padding: 6px 16px;
+    background: transparent;
+    border: 1px solid var(--cyber-blue);
+    border-radius: 6px;
+    color: var(--cyber-blue);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.85rem;
+}
+
+.edit-btn:hover { background: rgba(0,245,255,0.1); }
+
+/* Edit Modal */
+.edit-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.edit-modal.active { display: flex; }
+
+.modal-content {
+    background: rgba(10,14,39,0.97);
+    padding: 40px;
+    border-radius: 16px;
+    max-width: 480px;
+    width: 90%;
+    border: 2px solid var(--cyber-blue);
+    box-shadow: 0 0 40px rgba(0,245,255,0.3);
+}
+
+.modal-title { font-family: 'Orbitron', sans-serif; font-size: 1.4rem; margin-bottom: 25px; color: var(--cyber-blue); }
+
+.modal-actions { display: flex; gap: 15px; margin-top: 30px; }
+
+.save-btn {
+    flex: 1;
+    padding: 12px;
+    background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-purple));
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.save-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+.cancel-btn {
+    flex: 1;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.cancel-btn:hover { background: rgba(255,255,255,0.05); }
+
+@media (max-width: 968px) {
+    .profile-layout { grid-template-columns: 1fr; }
+    .info-row { grid-template-columns: 1fr; gap: 8px; }
+    .info-row .edit-btn { width: fit-content; }
+}
